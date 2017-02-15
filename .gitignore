@@ -1,0 +1,11 @@
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*.~nib
+.metadata
+.settings
+.loadpath
+.recommenders
+hs_err_*
