@@ -2,6 +2,8 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import processing.opengl.PGraphics2D;
 
+import java.util.Date;
+
 import com.thomasdiewald.pixelflow.java.DwPixelFlow;
 import com.thomasdiewald.pixelflow.java.fluid.DwFluid2D;
 import com.thomasdiewald.pixelflow.java.fluid.DwFluidStreamLines2D;
@@ -52,7 +54,7 @@ public class Main extends PApplet {
 
 	public void settings() {
 		size(3250, 930, P2D);
-		smooth(4);
+//		smooth(4);
 	}
 
 	public void setup() {
@@ -83,7 +85,7 @@ public class Main extends PApplet {
 
 		// pgraphics for fluid
 		pg_fluid = (PGraphics2D) createGraphics(width, height, P2D);
-		pg_fluid.smooth(4);
+//		pg_fluid.smooth(4);
 
 		// pgraphics for obstacles
 		pg_obstacles = (PGraphics2D) createGraphics(width, height, P2D);
@@ -119,6 +121,8 @@ public class Main extends PApplet {
 	}
 
 	public void draw() {
+		
+		background(0);
 		
 		// update simulation
 		if(UPDATE_FLUID){
@@ -156,6 +160,12 @@ public class Main extends PApplet {
 		surface.setTitle(txt_fps);
 		
 		image(overprint, 0, 0);
+		
+		if (keyPressed && (key == 'O' || key == 'o')) {
+			Date d = new Date();
+			String foo = String.format("%d.png", d.getTime());
+			pg_fluid.save(foo);
+		}
 	}
 
 	public static void main(String[] args) {
